@@ -1,7 +1,14 @@
 function enviarFormulario(evento){ //funcion a ejecutar cuando se haga submit
-    evento.preventDefault(); //evita que se haga la peticio al servidor enviando los datos
-    console.log(evento);
-    sessionStorage.setItem('logueado', 'true');
+  evento.preventDefault(); //evita que se haga la peticio al servidor enviando los datos
+  let nombreUsuario = document.getElementById('login-username').value;   
+  if(document.getElementById('remember-login').checked) {
+      localStorage.setItem('nombre', nombreUsuario);
+      localStorage.setItem('logueado', 'true');
+    }
+    else {
+      sessionStorage.setItem('nombre', nombreUsuario);
+      sessionStorage.setItem('logueado', 'true');
+    }
     location.href='index.html';
     return true;
   };
