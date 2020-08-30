@@ -62,17 +62,20 @@ function cerrarSesion(){
 
 
 if(localStorage.getItem('nombre') || sessionStorage.getItem('nombre')) { 
-  document.querySelectorAll('.site-header div')[0].innerHTML += `<a class="py-2" id="profile-name" href="my-profile.html">Bienvenido, </a><button id="botonSesion" onclick="cerrarSesion()">Cerrar Sesion</button>`;
+  document.querySelectorAll('.site-header div')[0].innerHTML += `<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle border-0 py-2" id="profile-name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:rgb(214, 28, 108);">Bienvenido, </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+    <a class="dropdown-item" href="my-profile.html">Mi Perfil</a>
+    <button class="dropdown-item" id="botonSesion" onclick="cerrarSesion()">Cerrar Sesion</button>
+  </div>
+</div>`;
   if(localStorage.getItem('nombre')) {
     document.getElementById('profile-name').innerHTML += localStorage.getItem('nombre');
-  }
-  else {
+  } else {
     document.getElementById('profile-name').innerHTML += sessionStorage.getItem('nombre');
   }
-  
-}
-else {
-  document.querySelectorAll('.site-header div')[0].innerHTML += `<a class="py-2" href="login.html">Iniciar Sesion</a>`;
+} else {
+  document.querySelectorAll('.site-header div')[0].innerHTML += `<a class="btn py-2" style="background-color: rgb(214, 28, 108);" href="login.html">Iniciar Sesion</a>`;
 };
 
 

@@ -62,11 +62,11 @@ function appendProduct(){
     } else {
         for (let i = 0; i < orderedArray.length; i++) {
             let product = orderedArray[i];
-            htmlAppend += `<div class="d-flex flex-row"><div><h2><strong>` + product.name + `</strong></h2>
+            htmlAppend += `<hr><div class="d-flex flex-row"><div><h2><strong>` + product.name + `</strong></h2>
         <p>Descripcion: ` + product.description + `</p>
         <p>Precio: ` + product.cost + ` ` + product.currency + `</p>
         <p>Vendidos: ` + product.soldCount + `</p></div>
-        <div><img src="`+ product.imgSrc + `" class="pb-2 pl-3 pt-2"></div></div><hr>`
+        <div><img src="`+ product.imgSrc + `" class="pb-2 pl-3 pt-2"></div></div>`
             document.getElementById('product-container').innerHTML = htmlAppend;
         }
     }
