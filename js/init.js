@@ -22,7 +22,7 @@ var getJSONData = function(url){
     .then(response => {
       if (response.ok) {
         return response.json();
-      }else{
+      } else{
         throw Error(response.statusText);
       }
     })
@@ -42,7 +42,7 @@ var getJSONData = function(url){
 
 
 if (
-  window.location.href.endsWith('index.html') &&
+  !window.location.href.endsWith('login.html') &&
   !(sessionStorage.getItem('logueado') === 'true' || localStorage.getItem('logueado') === 'true')) { 
     window.location.href = 'login.html';//si el usuario no esta logueado redirigir a 'login.html'
 };
@@ -63,19 +63,21 @@ function cerrarSesion(){
 
 if(localStorage.getItem('nombre') || sessionStorage.getItem('nombre')) { 
   document.querySelectorAll('.site-header div')[0].innerHTML += `<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle border-0 py-2" id="profile-name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:rgb(214, 28, 108);">Bienvenido, </button>
+  <button class="btn dropdown-toggle border-0 py-2 pink-button" id="profile-name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Bienvenido, </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
     <a class="dropdown-item" href="my-profile.html">Mi Perfil</a>
+    <a class="dropdown-item" href="cart.html">Mi Carrito</a>
     <button class="dropdown-item" id="botonSesion" onclick="cerrarSesion()">Cerrar Sesion</button>
   </div>
 </div>`;
+
   if(localStorage.getItem('nombre')) {
     document.getElementById('profile-name').innerHTML += localStorage.getItem('nombre');
   } else {
     document.getElementById('profile-name').innerHTML += sessionStorage.getItem('nombre');
   }
-} else {
-  document.querySelectorAll('.site-header div')[0].innerHTML += `<a class="btn py-2" style="background-color: rgb(214, 28, 108);" href="login.html">Iniciar Sesion</a>`;
+} else { //boton de iniciar sesion no utilizado por el momento
+  document.querySelectorAll('.site-header div')[0].innerHTML += `<a class="btn py-2 pink-button" href="login.html">Iniciar Sesion</a>`;
 };
 
 

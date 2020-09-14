@@ -139,3 +139,8 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+.pink-button {
+  background-color: rgb(214, 28, 108);
+  color: rgb(255, 255, 255);
+}

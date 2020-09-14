@@ -4,8 +4,10 @@
 
 let defaultArray = [];
 let orderedArray = [];
-let setOrder = 0;
-let setPrice = 0;
+let setOrder = undefined;
+let setPrice = undefined;
+
+let productURL = ""
 
 function sortBy(order){
     showSpinner();
@@ -34,7 +36,7 @@ function sortBy(order){
 function filterPrice(x){
     showSpinner();
     setPrice = x;
-    if(x === 'a'){
+    if(x === 'a'){ //corregir valores magicos
         orderedArray = defaultArray.filter(function(y){return y.cost >= 10000 && y.cost <= 12500;});
     } else if(x === 'b'){
         orderedArray = defaultArray.filter(function(y){return y.cost >= 12500 && y.cost <= 15000;});
@@ -62,13 +64,13 @@ function appendProduct(){
     } else {
         for (let i = 0; i < orderedArray.length; i++) {
             let product = orderedArray[i];
-            htmlAppend += `<hr><div class="d-flex flex-row"><div><h2><strong>` + product.name + `</strong></h2>
+            htmlAppend += `<div class="d-flex flex-row list-group-item list-group-item-action"><div><a class="h2" href="product-info.html?name=`+product.name+`"><strong>` + product.name + `</strong></a>
         <p>Descripcion: ` + product.description + `</p>
         <p>Precio: ` + product.cost + ` ` + product.currency + `</p>
         <p>Vendidos: ` + product.soldCount + `</p></div>
         <div><img src="`+ product.imgSrc + `" class="pb-2 pl-3 pt-2"></div></div>`
-            document.getElementById('product-container').innerHTML = htmlAppend;
         }
+        document.getElementById('product-container').innerHTML = htmlAppend;
     }
 }
 
@@ -96,7 +98,7 @@ function searchItem (search){
 
 
 document.addEventListener("DOMContentLoaded", function(e) {
-    getJSONData('https://japdevdep.github.io/ecommerce-api/product/all.json')
+    getJSONData(PRODUCTS_URL)
     .then(function(resultObj){
         if (resultObj.status === "ok")
         {

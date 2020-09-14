@@ -25,12 +25,27 @@
       <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 3 (Fecha de entrega: 13/09/2020) y Entrega 4 (Fecha de entrega: 20/09/2020).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+  <div class="container p-5" id="globalContainer">
+    <div class="container p-5" id="itemDescription">
+    
+    </div>
+    <div class="container p-5" id="relatedProducts">
+      <h2>Productos relacionados:</h2>
+    </div>
+    <div class="container p-5" id="addReview">
+      <h2>Añadir comentario:</h2>
+      <div id="starContainer" style="cursor: pointer;">
+        <li class="fa fa-star" id="star1" value="1"></li>
+        <li class="fa fa-star" id="star2" value="2"></li>
+        <li class="fa fa-star" id="star3" value="3"></li>
+        <li class="fa fa-star" id="star4" value="4"></li>
+        <li class="fa fa-star" id="star5" value="5"></li>
+      </div>
+    <textarea class="pl-2" name="" id="userComment" cols="50" rows="5"></textarea><br>
+    <input type="button" id="addComment" value="Comentar" class="btn pink-button">   
+    </div>
+    <div class="container p-5" id="itemReview">
+      <h2>Comentarios:</h3></br>
     </div>
   </div>
   <footer class="text-muted">
