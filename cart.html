@@ -40,15 +40,41 @@
       <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
-      <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 5 (Fecha de entrega: 11/10/2020) y Entrega 6 (Fecha de entrega: 25/10/2020).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+  <div class="container p-5" id="cart-container">
+    <table class="table table-bordered rounded" >
+      <thead>
+        <tr>
+          <th scope="col">Producto</th>
+          <th scope="col">Cantidad</th>
+          <th scope="col">Valor Unitario</th>
+          <th scope="col">Valor Total</th>
+        </tr>
+      </thead> 
+      <tbody id="item-data">
+
+      </tbody>
+    </table>
+    <div class="d-flex justify-content-between">
+      <div>
+        <form action="" id="tipo-envio" onchange="cambiarEnvio(event)">
+          <label for="direccion-envio">Direcccion: </label>
+          <input type="text" id="direccion-envio"><br>
+          <label for="pais-envio">Pais: </label>
+          <input type="text" id="pais-envio"><br>
+        <p>Seleccioner un tipo de envio:</p>
+          <input type="radio" id="envio-premium" name="envio" value="15" checked>
+          <label for="envio-premium">Premium (2-5 días)</label><br>
+          <input type="radio" id="envio-express" name="envio" value="7">
+          <label for="envio-express">Express (5-8 días)</label><br>
+          <input type="radio" id="envio-standard" name="envio" value="5">
+          <label for="envio-standard">Standard (12 a 15 días)</label><br>
+        </form>
+      </div>
+      <div id="price-container">
+
+      </div>
     </div>
   </div>
   <div id="spinner-wrapper">

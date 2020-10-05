@@ -62,19 +62,19 @@ function cerrarSesion(){
 
 
 if(localStorage.getItem('nombre') || sessionStorage.getItem('nombre')) { 
-  document.querySelectorAll('.site-header div')[0].innerHTML += `<div class="dropdown">
-  <button class="btn dropdown-toggle border-0 py-2 pink-button" id="profile-name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Bienvenido, </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
-    <a class="dropdown-item" href="my-profile.html">Mi Perfil</a>
-    <a class="dropdown-item" href="cart.html">Mi Carrito</a>
-    <button class="dropdown-item" id="botonSesion" onclick="cerrarSesion()">Cerrar Sesion</button>
+  document.querySelectorAll('.site-header div')[0].innerHTML += `<div class="dropdown" id="dropdown">
+  <button class="dropbtn border-0 px-3 py-2 pink-button" id="profile-name">Bienvenido, </button>
+  <div class="dropdown-content" id="dropdown-container")>
+    <a href="my-profile.html">Mi Perfil</a>
+    <a href="cart.html">Mi Carrito</a>
+    <a id="botonSesion" onclick="cerrarSesion()" href="">Cerrar Sesion</a>
   </div>
 </div>`;
 
   if(localStorage.getItem('nombre')) {
-    document.getElementById('profile-name').innerHTML += localStorage.getItem('nombre');
+    document.getElementById('profile-name').innerHTML += `` + localStorage.getItem('nombre') + ` &nbsp<i class="arrow"></i>`;
   } else {
-    document.getElementById('profile-name').innerHTML += sessionStorage.getItem('nombre');
+    document.getElementById('profile-name').innerHTML += `` + sessionStorage.getItem('nombre') + ` &nbsp<i class="arrow"></i>`;
   }
 } else { //boton de iniciar sesion no utilizado por el momento
   document.querySelectorAll('.site-header div')[0].innerHTML += `<a class="btn py-2 pink-button" href="login.html">Iniciar Sesion</a>`;

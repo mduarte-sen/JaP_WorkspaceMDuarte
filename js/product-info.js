@@ -2,7 +2,6 @@ let productInfo = [];
 let productReview = [];
 let productArray = [];
 
-let infourl = window.location;
 let urlObject = new URL(location);
 let name = urlObject.searchParams.get('name');
 
@@ -66,9 +65,7 @@ function reviewAppend(){
 }
 
 function appendRelated(){
-    debugger
     let htmlAppend = ``;
-    // console.log(productInfo);
     let relatedNumber = productInfo[0].relatedProducts;
     for(let i = 0; i < relatedNumber.length; i++){
         let relatedItem = productArray[relatedNumber[i]];
@@ -155,17 +152,17 @@ document.addEventListener("DOMContentLoaded", function(e){
         if(document.getElementById('userComment').value && starCantidad){
             addNewReview();
         } else{
-            alert('Debe ingresar un comentario y una puntuacion')
+            alert('Debe ingresar un comentario y una puntuacion');
         }
     });
     for(let i = 0; i < 5; i++){
         let starNo = `star`+ (i+1) +``;
         document.getElementById(starNo).addEventListener("mouseover", function(){
             for(let i = 0; i < document.getElementById(starNo).value; i++){
-                document.getElementById(`star`+ (i+1) +``).setAttribute("class", "fa fa-star checked")
+                document.getElementById(`star`+ (i+1) +``).setAttribute("class", "fa fa-star checked");
             };
             for(let i = 5; i > document.getElementById(starNo).value; i--){
-                document.getElementById(`star`+ (i) +``).setAttribute("class", "fa fa-star")
+                document.getElementById(`star`+ (i) +``).setAttribute("class", "fa fa-star");
             };
         })
         document.getElementById(starNo).addEventListener("click", function(){
@@ -175,15 +172,15 @@ document.addEventListener("DOMContentLoaded", function(e){
     document.getElementById('starContainer').addEventListener("mouseout", function(){
         if(starCantidad){
             for(let i = 0; i < starCantidad; i++){
-                document.getElementById(`star`+ (i+1) +``).setAttribute("class", "fa fa-star checked")
+                document.getElementById(`star`+ (i+1) +``).setAttribute("class", "fa fa-star checked");
             };
             for(let i = 5; i > starCantidad; i--){
-                document.getElementById(`star`+ (i) +``).setAttribute("class", "fa fa-star")
+                document.getElementById(`star`+ (i) +``).setAttribute("class", "fa fa-star");
             };
         }
         else{
         for(let i = 0; i < 5; i++){
-            document.getElementById(`star`+ (i+1) +``).setAttribute("class", "fa fa-star")
+            document.getElementById(`star`+ (i+1) +``).setAttribute("class", "fa fa-star");
         };
     }
     })
