@@ -42,8 +42,22 @@
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
     </div>
   </nav>
+  <div class="container pt-5">
+    <div class="row">
+      <div class="col text-center">
+          <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons" id="currency-change" onchange="showCart()">
+              <label class="btn btn-light active" id="UYU" >
+                  <input type="radio" name="options" autocomplete="off" checked>USD
+              </label>
+              <label class="btn btn-light" id="USD" >
+                  <input type="radio" name="options" autocomplete="off">UYU
+              </label>
+          </div>
+      </div>
+    </div>
+  </div>
   <div class="container p-5" id="cart-container">
-    <table class="table table-bordered rounded" >
+    <table class="table table-bordered">
       <thead>
         <tr>
           <th scope="col">Producto</th>
@@ -52,26 +66,54 @@
           <th scope="col">Valor Total</th>
         </tr>
       </thead> 
-      <tbody id="item-data">
+      <tbody class="container " id="item-data">
 
       </tbody>
     </table>
     <div class="d-flex justify-content-between">
       <div>
-        <form action="" id="tipo-envio" onchange="cambiarEnvio(event)">
-          <label for="direccion-envio">Direcccion: </label>
-          <input type="text" id="direccion-envio"><br>
-          <label for="pais-envio">Pais: </label>
-          <input type="text" id="pais-envio"><br>
-        <p>Seleccioner un tipo de envio:</p>
-          <input type="radio" id="envio-premium" name="envio" value="15" checked>
-          <label for="envio-premium">Premium (2-5 días)</label><br>
-          <input type="radio" id="envio-express" name="envio" value="7">
-          <label for="envio-express">Express (5-8 días)</label><br>
-          <input type="radio" id="envio-standard" name="envio" value="5">
-          <label for="envio-standard">Standard (12 a 15 días)</label><br>
-        </form>
-      </div>
+        <p class="mb-2 mt-3 font-weight-bold">Ingrese una direccion y metodo de envio:</p>
+        <div >
+          <form action="" id="tipo-envio" onchange="cambiarEnvio(event)">
+            <label for="direccion-envio">Direccion: </label>
+            <input type="text" id="direccion-envio"><br>
+            <label for="pais-envio">Pais: </label>
+            <select name="" id="pais-envio">
+              <option hidden>--Seleccione su pais--</option>
+              <option value="AR">Argentina</option>
+              <option value="BO">Bolivia</option>
+              <option value="BR">Brazil</option>
+              <option value="CL">Chile</option>
+              <option value="CO">Colombia</option>
+              <option value="EC">Ecuador</option>
+              <option value="FK">Falkland Islands (Malvinas)</option>
+              <option value="GF">French Guiana</option>
+              <option value="GY">Guyana</option>
+              <option value="PY">Paraguay</option>
+              <option value="PE">Peru</option>
+              <option value="SR">Suriname</option>
+              <option value="UY">Uruguay</option>
+              <option value="VE">Venezuela</option>
+            </select><br>
+            <p>Seleccioner un tipo de envio:</p>
+            <input type="radio" id="envio-premium" name="envio" value="15" checked>
+            <label for="envio-premium">Premium (2-5 días)</label><br>
+            <input type="radio" id="envio-express" name="envio" value="7">
+            <label for="envio-express">Express (5-8 días)</label><br>
+            <input type="radio" id="envio-standard" name="envio" value="5">
+            <label for="envio-standard">Standard (12 a 15 días)</label><br>
+          </form>
+        </div>
+        <div>
+          <p class="mb-2 mt-3 font-weight-bold"> Seleccione un metodo de pago:</p>
+          <div>
+            <label for="credito-debito">Tarjeta de Credito/Debito</label>
+            <input type="radio" name="tipo-pago" id="credito-debito" checked><br>
+            <label for="cuenta-banco">Cuenta Bancaria</label>
+            <input type="radio" name="tipo-pago" id="cuenta-banco">
+          </div>
+        </div>
+    </div>
       <div id="price-container">
 
       </div>

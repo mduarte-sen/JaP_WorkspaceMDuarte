@@ -190,12 +190,6 @@ a.custom-card:hover {
   display:block;
 }
 
-/* .dropdown:focus-within .arrow {
-  margin-bottom: 0%;
-  transform: rotate(135deg);
-  -webkit-transform: rotate(135deg);
-} */
-
 .arrow {
   border: solid white;
   border-width: 0 3px 3px 0;
@@ -204,4 +198,21 @@ a.custom-card:hover {
   margin-bottom: 2%;
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
+}
+
+#item-data input {
+  width: 15%;
+}
+
+#item-data input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.centered-td {
+  text-align: center;   
+}
+
+.canti-input {
+  text-align: center;   
 }
