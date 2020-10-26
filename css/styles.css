@@ -216,3 +216,15 @@ a.custom-card:hover {
 .canti-input {
   text-align: center;   
 }
+
+.delete-item-button {
+  cursor: pointer;
+}
+
+.delete-item-button:hover {
+  text-decoration: underline;
+}
+
+#paymenterror-container {
+  color: red;
+}

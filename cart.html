@@ -34,6 +34,52 @@
 </head>
 
 <body>
+  <div id="modal-container">
+    <div class="modal fade" id="modalDebitCredit" data-backdrop="static" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalDebitCreditLabel">Pago con tarjeta de Credito/Debito</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <label for="cardNum">Numero de tarjeta: </label>
+            <input type="number" name="cardNum" id="cardNum" form="purchaseForm" required><span id="cardNumCheck"></span><br>
+            <label for="cardVerify"> Numero verificador:</label>
+            <input type="number"  name="cardVerify" id="cardVerify" form="purchaseForm" required><span id="cardVerCheck"></span><br>
+            <label for="cardExpMonth">Mes de expiracion: </label>
+            <input type="number" name="cardExpMonth" id="cardExpMonth" placeholder="Ej.: 01" form="purchaseForm" required><span id="monthExpCheck"></span><br>
+            <label for="cardExpYear">Año de expiracion: </label>
+            <input type="number"  name="cardExpYear" id="cardExpYear" placeholder="Ej.: 2020" form="purchaseForm" required><span id="yearExpCheck"></span>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn pink-button" data-dismiss="modal">Continuar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="modalBankAccount" data-backdrop="static" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalBankAccountLabel">Pago con Cuenta Bancaria</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <label for="numAccount">Numero de cuenta: </label>
+            <input type="text" id="numAccount" form="purchaseForm">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn pink-button" data-dismiss="modal">Continuar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <nav class="site-header sticky-top py-1 bg-dark">
     <div class="container d-flex flex-column flex-md-row justify-content-between">
       <a class="py-2 d-none d-md-inline-block" href="index.html">Inicio</a>
@@ -45,7 +91,7 @@
   <div class="container pt-5">
     <div class="row">
       <div class="col text-center">
-          <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons" id="currency-change" onchange="showCart()">
+          <div class="btn-group btn-group-toggle" data-toggle="buttons" id="currency-change" onchange="showCart()">
               <label class="btn btn-light active" id="UYU" >
                   <input type="radio" name="options" autocomplete="off" checked>USD
               </label>
@@ -72,14 +118,14 @@
     </table>
     <div class="d-flex justify-content-between">
       <div>
-        <p class="mb-2 mt-3 font-weight-bold">Ingrese una direccion y metodo de envio:</p>
-        <div >
-          <form action="" id="tipo-envio" onchange="cambiarEnvio(event)">
+      <div>
+        <h6 class="mb-2 mt-3 font-weight-bold">Ingrese una direccion y metodo de envio:</h6>
+          <form action="" id="purchaseForm" onchange="cambiarEnvio(event)" onsubmit="validatePay(event)">
             <label for="direccion-envio">Direccion: </label>
-            <input type="text" id="direccion-envio"><br>
+            <input type="text" id="direccion-envio" required><br>
             <label for="pais-envio">Pais: </label>
-            <select name="" id="pais-envio">
-              <option hidden>--Seleccione su pais--</option>
+            <select name="" id="pais-envio" required>
+              <option value="" hidden>--Seleccione su pais--</option>
               <option value="AR">Argentina</option>
               <option value="BO">Bolivia</option>
               <option value="BR">Brazil</option>
@@ -101,20 +147,22 @@
             <input type="radio" id="envio-express" name="envio" value="7">
             <label for="envio-express">Express (5-8 días)</label><br>
             <input type="radio" id="envio-standard" name="envio" value="5">
-            <label for="envio-standard">Standard (12 a 15 días)</label><br>
+            <label for="envio-standard">Standard (12 a 15 días)</label><br></div>
           </form>
-        </div>
-        <div>
-          <p class="mb-2 mt-3 font-weight-bold"> Seleccione un metodo de pago:</p>
+      </div>
+      <div>
+          <h6 class="mb-2 mt-3 font-weight-bold"> Seleccione un metodo de pago:</h5>
           <div>
-            <label for="credito-debito">Tarjeta de Credito/Debito</label>
-            <input type="radio" name="tipo-pago" id="credito-debito" checked><br>
+            <input type="radio" name="tipo-pago" id="credito-debito" data-toggle="modal" data-target="#modalDebitCredit" form="purchaseForm" onclick="paymentRequirement('card')" required>
+            <label for="credito-debito">Tarjeta de Credito/Debito</label><br>
+            <input type="radio" name="tipo-pago" id="cuenta-banco" data-toggle="modal" data-target="#modalBankAccount" form="purchaseForm" onclick="paymentRequirement('bank')">
             <label for="cuenta-banco">Cuenta Bancaria</label>
-            <input type="radio" name="tipo-pago" id="cuenta-banco">
           </div>
-        </div>
+          <div id="paymenterror-container">
+
+          </div>
     </div>
-      <div id="price-container">
+      <div class="d-flex align-items-end flex-column" id="price-container">
 
       </div>
     </div>
