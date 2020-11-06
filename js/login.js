@@ -5,13 +5,13 @@ function enviarFormulario(evento){ //funcion a ejecutar cuando se haga submit
       localStorage.setItem('nombre', nombreUsuario);
       localStorage.setItem('logueado', 'true');
     }
-    else {
+  else {
       sessionStorage.setItem('nombre', nombreUsuario);
       sessionStorage.setItem('logueado', 'true');
     }
-    location.href='index.html';
-    return true;
-  };
+  location.href='index.html';
+  return true;
+};
 
 
 //Función que se ejecuta una vez que se haya lanzado el evento de

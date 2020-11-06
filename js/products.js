@@ -1,7 +1,3 @@
-//Función que se ejecuta una vez que se haya lanzado el evento de
-//que el documento se encuentra cargado, es decir, se encuentran todos los
-//elementos HTML presentes.
-
 let defaultArray = [];
 let orderedArray = [];
 let setOrder = undefined;
@@ -64,13 +60,28 @@ function appendProduct(){
     } else {
         for (let i = 0; i < orderedArray.length; i++) {
             let product = orderedArray[i];
-            htmlAppend += `<div class="d-flex flex-row list-group-item list-group-item-action"><div><a class="h2" href="product-info.html?name=`+product.name+`"><strong>` + product.name + `</strong></a>
-        <p>Descripcion: ` + product.description + `</p>
-        <p>Precio: ` + product.cost + ` ` + product.currency + `</p>
-        <p>Vendidos: ` + product.soldCount + `</p></div>
-        <div><img src="`+ product.imgSrc + `" class="pb-2 pl-3 pt-2"></div></div>`
+        //     htmlAppend += `<div class="d-flex flex-row list-group-item list-group-item-action"><div><a class="h2" href="product-info.html?name=`+product.name+`"><strong>` + product.name + `</strong></a>
+        // <p>Descripcion: ` + product.description + `</p>
+        // <p>Precio: ` + product.cost + ` ` + product.currency + `</p>
+        // <p>Vendidos: ` + product.soldCount + `</p></div>
+        // <div><img src="`+ product.imgSrc + `" class="pb-2 pl-3 pt-2"></div></div>` //codigo comentado por el momento para despues implementar opcion de eleccion de estilo de muestra de articulos.
+            htmlAppend += `<div class="col-4 py-4">
+            <div class="card h-100"  style="width: 18rem;">
+               <a href="product-info.html?producto=`+product.name+`">
+                    <img src="`+product.imgSrc+`"class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">`+ product.name +`</h5>
+                        <p class="card-text">` + product.description + `</p>
+                        <div class="d-flex justify-content-between">
+                            <p>Precio: ` + product.cost + ` ` + product.currency + `</p>
+                            <small>Vendidos: ` + product.soldCount + `</small>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            </div>`
         }
-        document.getElementById('product-container').innerHTML = htmlAppend;
+        document.getElementById('fila').innerHTML = htmlAppend;
     }
 }
 
@@ -100,8 +111,7 @@ function searchItem (search){
 document.addEventListener("DOMContentLoaded", function(e) {
     getJSONData(PRODUCTS_URL)
     .then(function(resultObj){
-        if (resultObj.status === "ok")
-        {
+        if (resultObj.status === "ok") {
             productArray = resultObj.data;
             defaultArray = resultObj.data;
             sortBy('porDefec');

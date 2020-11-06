@@ -71,7 +71,10 @@ if(localStorage.getItem('nombre') || sessionStorage.getItem('nombre')) {
   </div>
 </div>`;
 
-  if(localStorage.getItem('nombre')) {
+  if(localStorage.getItem('userInfo')){
+    let infoToShow = JSON.parse(localStorage.getItem('userInfo'));
+    document.getElementById('profile-name').innerHTML += `` + infoToShow.fullName.split(" ")[0] + ` &nbsp<i class="arrow"></i>`;
+  } else if(localStorage.getItem('nombre')) {
     document.getElementById('profile-name').innerHTML += `` + localStorage.getItem('nombre') + ` &nbsp<i class="arrow"></i>`;
   } else {
     document.getElementById('profile-name').innerHTML += `` + sessionStorage.getItem('nombre') + ` &nbsp<i class="arrow"></i>`;

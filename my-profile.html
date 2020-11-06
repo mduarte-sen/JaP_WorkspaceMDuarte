@@ -42,12 +42,25 @@
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 7 (Fecha de entrega: 8/11/202020) -> Punto 1 y 2.</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+  <div class="container p-5 d-flex justify-content-around" id="profile-container">
+    <div>
+      <h2>Mi Perfil</h2>
+      <form action="" onsubmit="saveUserInfo(event)">
+        <label class="pt-3" for="user-cname">Nombre completo: </label><br>
+        <input type="text" id="user-cname"><br>
+        <label class="pt-3" for="user-age">Edad: </label><br>
+        <input type="number" id="user-age"><br>
+        <label class="pt-3" for="user-email">Email: </label><br>
+        <input type="email" id="user-email"><br>
+        <label class="pt-3" for="user-phone">Telefono de contacto:</label><br>
+        <input type="number" id="user-phone"><br>
+        <button type="submit" class="mt-4 btn pink-button" id="save-profile-changes">Guardar cambios</button>
+      </form>
+    </div>
+    <div>
+      <img class="mt-5" src="img/Portrait_Placeholder.png" alt="" width="200"><br>
+      <label class="mt-3" for="profile-image-upload">Subir Imagen: </label><br>
+      <input  type="file" name="profile-image-upload" id="profile-image-upload">
     </div>
   </div>
   <footer class="text-muted bg-light">

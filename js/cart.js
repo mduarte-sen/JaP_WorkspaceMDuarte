@@ -19,12 +19,10 @@ function showCart(){
         if(article[i].currency != currentCurrency){
             if(currentCurrency == "USD"){
                 costoUnidad[i] = article[i].unitCost/USDToUYU;
-            }
-            else {
+            } else {
                 costoUnidad[i] = article[i].unitCost*USDToUYU;
             }
-        }
-        else {
+        } else {
             costoUnidad[i] = article[i].unitCost;
         }
         if (cantidad[i]!==0){
@@ -91,6 +89,7 @@ function addSubstract(buttonValue, number){
 }
 
 function validatePay(e){
+    e.preventDefault();
     let creditInput = document.getElementById("cardNum").value;
     let creditExpress = /^\d{16}$/
     let cvvInput = document.getElementById("cardVerify").value;
@@ -99,41 +98,51 @@ function validatePay(e){
     let monthExpress = /^(0[1-9])|(1[0-2])$/
     let yearInput = document.getElementById("cardExpYear").value;
     let yearExpress = /^\d{4}$/
+    let mensajeError = ``;
 
     if(paymentChosen == "creditDebit"){
+        let error = false
         if(!creditExpress.test(creditInput)){
-            e.preventDefault();
-            document.getElementById("paymenterror-container").innerHTML += `<p>*Numero de Tarjeta Invalido. Ingresar 16 digitos, sin incluir guion o espacios.</p>`
+            error = true;
+            mensajeError += `<p>*Numero de Tarjeta Invalido. Ingresar 16 digitos, sin incluir guion o espacios.</p>`
             document.getElementById("cardNumCheck").innerHTML = "❌";
-        }
-        else {
+        } else {
             document.getElementById("cardNumCheck").innerHTML = "✔";
         }
         if(!cvvExpress.test(cvvInput)){
-            e.preventDefault();
-            document.getElementById("paymenterror-container").innerHTML += `<p>*Digito Verificador de Tarjeta Invalido. Ingresar un numero de 3 digitos.</p>`
+            error = true;
+            mensajeError += `<p>*Digito Verificador de Tarjeta Invalido. Ingresar un numero de 3 digitos.</p>`
             document.getElementById("cardVerCheck").innerHTML = "❌";
-        }
-        else {
+        } else {
             document.getElementById("cardVerCheck").innerHTML = "✔";
         }
-        if (!(monthExpress.test(monthInput))){
-            e.preventDefault();
-            document.getElementById("paymenterror-container").innerHTML += `<p>*Mes de expiracion de Tarjeta Invalido. Debe ser un mes entre 01 y 12.</p>`
+        if (!monthExpress.test(monthInput)){
+            error = true;
+            mensajeError += `<p>*Mes de expiracion de Tarjeta Invalido. Debe ser un mes entre 01 y 12.</p>`
             document.getElementById("monthExpCheck").innerHTML = "❌";
-        }
-        else {
+        } else {
             document.getElementById("monthExpCheck").innerHTML = "✔";
         }
         if(!yearExpress.test(yearInput)){
-            e.preventDefault();
-            document.getElementById("paymenterror-container").innerHTML += `<p>*Año de expiracion de Tarjeta Invalido. Ingresar un numero de 4 digitos.</p>`
+            error = true;
+            mensajeError += `<p>*Año de expiracion de Tarjeta Invalido. Ingresar un numero de 4 digitos.</p>`
             document.getElementById("yearExpCheck").innerHTML = "❌";
-        }
-        else {
+        } else {
             document.getElementById("yearExpCheck").innerHTML = "✔";
         }
+        if(creditInput === '' && cvvInput === '' && monthInput === '' && yearInput === ''){
+            error = true;
+            mensajeError = `<p>*Debe ingresar la informacion de su metodo de pago.</p>`
+        } else if(creditInput === '' || cvvInput === '' || monthInput === ''|| yearInput === ''){
+            error = true;
+            mensajeError += `<p>*Debe rellenar todos los campos del metodo de pago.</p>`
+        }
+        if(!error){
+            e.submit();
+        }
+
     }
+    document.getElementById("paymenterror-container").innerHTML = mensajeError;
 }
 
 function deleteCartItem(idNumber){
@@ -145,19 +154,8 @@ function deleteCartItem(idNumber){
 function paymentRequirement(paymentType){
     if(paymentType=="card"){
         paymentChosen = "creditDebit";
-        creditInput = document.getElementById("cardNum").required = true;
-        creditInput = document.getElementById("cardVerify").required = true;
-        creditInput = document.getElementById("cardExpMonth").required = true;
-        creditInput = document.getElementById("cardExpYear").required = true;
-        creditInput = document.getElementById("numAccount").required = false;
-    }
-    else if(paymentType=="bank"){
+    } else if(paymentType=="bank"){
         paymentChosen = "bankAccount";
-        creditInput = document.getElementById("numAccount").required = true;
-        creditInput = document.getElementById("cardNum").required = false;
-        creditInput = document.getElementById("cardVerify").required = false;
-        creditInput = document.getElementById("cardExpMonth").required = false;
-        creditInput = document.getElementById("cardExpYear").required = false;
     }
 }
 

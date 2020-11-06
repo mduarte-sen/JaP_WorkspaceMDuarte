@@ -46,13 +46,13 @@
           </div>
           <div class="modal-body">
             <label for="cardNum">Numero de tarjeta: </label>
-            <input type="number" name="cardNum" id="cardNum" form="purchaseForm" required><span id="cardNumCheck"></span><br>
+            <input type="number" name="cardNum" id="cardNum" form="purchaseForm"><span id="cardNumCheck"></span><br>
             <label for="cardVerify"> Numero verificador:</label>
-            <input type="number"  name="cardVerify" id="cardVerify" form="purchaseForm" required><span id="cardVerCheck"></span><br>
+            <input type="number"  name="cardVerify" id="cardVerify" form="purchaseForm"><span id="cardVerCheck"></span><br>
             <label for="cardExpMonth">Mes de expiracion: </label>
-            <input type="number" name="cardExpMonth" id="cardExpMonth" placeholder="Ej.: 01" form="purchaseForm" required><span id="monthExpCheck"></span><br>
+            <input type="number" name="cardExpMonth" id="cardExpMonth" placeholder="Ej.: 01" form="purchaseForm"><span id="monthExpCheck"></span><br>
             <label for="cardExpYear">Año de expiracion: </label>
-            <input type="number"  name="cardExpYear" id="cardExpYear" placeholder="Ej.: 2020" form="purchaseForm" required><span id="yearExpCheck"></span>
+            <input type="number"  name="cardExpYear" id="cardExpYear" placeholder="Ej.: 2020" form="purchaseForm"><span id="yearExpCheck"></span>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn pink-button" data-dismiss="modal">Continuar</button>
@@ -118,7 +118,6 @@
     </table>
     <div class="d-flex justify-content-between">
       <div>
-      <div>
         <h6 class="mb-2 mt-3 font-weight-bold">Ingrese una direccion y metodo de envio:</h6>
           <form action="" id="purchaseForm" onchange="cambiarEnvio(event)" onsubmit="validatePay(event)">
             <label for="direccion-envio">Direccion: </label>
@@ -147,23 +146,23 @@
             <input type="radio" id="envio-express" name="envio" value="7">
             <label for="envio-express">Express (5-8 días)</label><br>
             <input type="radio" id="envio-standard" name="envio" value="5">
-            <label for="envio-standard">Standard (12 a 15 días)</label><br></div>
+            <label for="envio-standard">Standard (12 a 15 días)</label><br>
           </form>
       </div>
       <div>
-          <h6 class="mb-2 mt-3 font-weight-bold"> Seleccione un metodo de pago:</h5>
-          <div>
-            <input type="radio" name="tipo-pago" id="credito-debito" data-toggle="modal" data-target="#modalDebitCredit" form="purchaseForm" onclick="paymentRequirement('card')" required>
-            <label for="credito-debito">Tarjeta de Credito/Debito</label><br>
-            <input type="radio" name="tipo-pago" id="cuenta-banco" data-toggle="modal" data-target="#modalBankAccount" form="purchaseForm" onclick="paymentRequirement('bank')">
-            <label for="cuenta-banco">Cuenta Bancaria</label>
-          </div>
-          <div id="paymenterror-container">
+        <h6 class="mb-2 mt-3 font-weight-bold"> Seleccione un metodo de pago:</h5>
+        <div>
+          <input type="radio" name="tipo-pago" id="credito-debito" data-toggle="modal" data-target="#modalDebitCredit" form="purchaseForm" onclick="paymentRequirement('card')" required>
+          <label for="credito-debito">Tarjeta de Credito/Debito</label><br>
+          <input type="radio" name="tipo-pago" id="cuenta-banco" data-toggle="modal" data-target="#modalBankAccount" form="purchaseForm" onclick="paymentRequirement('bank')">
+          <label for="cuenta-banco">Cuenta Bancaria</label>
+        </div>
+        <div id="paymenterror-container">
 
-          </div>
-    </div>
+        </div>
+      </div>
       <div class="d-flex align-items-end flex-column" id="price-container">
-
+        
       </div>
     </div>
   </div>

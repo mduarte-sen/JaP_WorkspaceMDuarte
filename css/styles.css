@@ -145,13 +145,18 @@ a.custom-card:hover {
   color: rgb(255, 255, 255);
 }
 
+.pink-button:hover {
+  color: rgb(255, 255, 255);
+  background-color: rgb(196, 22, 97);
+}
+
 .dropbtn {
   cursor: pointer;
   border-radius: 5px;
 }
 
 /* Dropdown button on hover & focus */
-.dropbtn:hover, .dropbtn:focus {
+.dropbtn:focus {
   background-color: rgb(196, 22, 97);
 }
 
