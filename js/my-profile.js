@@ -1,3 +1,6 @@
+let input = document.getElementById('profile-image-upload');
+let image64 = undefined;
+
 function saveUserInfo(e){
     e.preventDefault();
     let userFullName = document.getElementById('user-cname').value;
@@ -11,60 +14,44 @@ function saveUserInfo(e){
         phone: userPhone
     }
     localStorage.setItem('userInfo', JSON.stringify(infoStorage));
+    localStorage['profileImg'] = image64;
+    let dataImage = localStorage.getItem('profileImg');
+    let bannerImg = document.getElementById('profile-picture');
+    bannerImg.src = dataImage;
+    reload('profile-picture');
+    document.getElementById('image-confirm').innerHTML = ``;
 }
 
-// var profileImage = document.getElementById("profile-image-upload");
-
-// // Take action when the image has loaded
-// profileImage.addEventListener("change", function () {
-//     var imgCanvas = document.createElement("canvas");
-//     var imgContext = imgCanvas.getContext("2d");
-
-//     // Make sure canvas is as big as the picture
-//     imgCanvas.width = profileImage.width;
-//     imgCanvas.height = profileImage.height;
-
-//     // Draw image into canvas element
-//     imgContext.drawImage(profileImage, 0, 0);
-
-//     // Get canvas contents as a data URL
-//     var imgAsDataURL = imgCanvas.toDataURL("image/png");
-
-//     // Save image into localStorage
-//     try {
-//         localStorage.setItem("profileImage", imgAsDataURL);
-//     }
-//     catch (e) {
-//         console.log("Storage failed: " + e);
-//     }
-//     console.log(localStorage.getItem('profileImage'))
-// }, false); 
-
-function getBase64Image(img) {
-    var canvas = document.createElement("canvas");
-    canvas.width = img.width;
-    canvas.height = img.height;
-
-    var ctx = canvas.getContext("2d");
-    ctx.drawImage(img, 0, 0);
-
-    var dataURL = canvas.toDataURL("image/png");
-
-    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+function reload(element){
+    let container = document.getElementById(element);
+    let content = container.innerHTML;
+    container.innerHTML= content; 
 }
 
-let bannerImage = document.getElementById('profile-image-upload');
+input.onchange = function(evt){
+    let tgt = evt.target || window.event.srcElement, 
+        files = tgt.files;
 
+    if (FileReader && files && files.length) {
+        let fr = new FileReader();
+        fr.onload = function () {
+            image64 = fr.result;
+        }
+        fr.readAsDataURL(files[0]);
+    }
+    document.getElementById('image-confirm').innerHTML = `<p style="color: limegreen;">Presione "Guardar Cambios" para guardar y mostrar la imagen.</p>`
+}
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function (e) {
-    document.getElementById("profile-image-upload").addEventListener('change',function () { 
-        let imgData = getBase64Image(bannerImage);
-        localStorage.setItem("imgData", imgData);
-        console.log(localStorage.getItem('imgData'))
-    })
+    if(localStorage.getItem('profileImg')){
+        let dataImage = localStorage.getItem('profileImg');
+        let bannerImg = document.getElementById('profile-picture');
+        bannerImg.src = dataImage;
+    }
+
     if(localStorage.getItem('userInfo')){
         let infoToShow = JSON.parse(localStorage.getItem('userInfo'));
         if(infoToShow.fullName){

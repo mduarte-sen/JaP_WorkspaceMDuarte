@@ -2,6 +2,7 @@ let defaultArray = [];
 let orderedArray = [];
 let setOrder = undefined;
 let setPrice = undefined;
+let visualMode = "cells";
 
 let productURL = ""
 
@@ -58,33 +59,39 @@ function appendProduct(){
         htmlAppend += `<p class='text-center h1'>Articulos no encontrados</p>`
         document.getElementById('product-container').innerHTML = htmlAppend;
     } else {
-        for (let i = 0; i < orderedArray.length; i++) {
-            let product = orderedArray[i];
-        //     htmlAppend += `<div class="d-flex flex-row list-group-item list-group-item-action"><div><a class="h2" href="product-info.html?name=`+product.name+`"><strong>` + product.name + `</strong></a>
-        // <p>Descripcion: ` + product.description + `</p>
-        // <p>Precio: ` + product.cost + ` ` + product.currency + `</p>
-        // <p>Vendidos: ` + product.soldCount + `</p></div>
-        // <div><img src="`+ product.imgSrc + `" class="pb-2 pl-3 pt-2"></div></div>` //codigo comentado por el momento para despues implementar opcion de eleccion de estilo de muestra de articulos.
-            htmlAppend += `<div class="col-4 py-4">
-            <div class="card h-100"  style="width: 18rem;">
-               <a href="product-info.html?producto=`+product.name+`">
-                    <img src="`+product.imgSrc+`"class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">`+ product.name +`</h5>
-                        <p class="card-text">` + product.description + `</p>
-                        <div class="d-flex justify-content-between">
-                            <p>Precio: ` + product.cost + ` ` + product.currency + `</p>
-                            <small>Vendidos: ` + product.soldCount + `</small>
+        if(visualMode === "list") {
+            for (let i = 0; i < orderedArray.length; i++) {
+                let product = orderedArray[i];
+                htmlAppend += `<div class="d-flex flex-row list-group-item list-group-item-action"><div><a class="h2" href="product-info.html?name=`+product.name+`"><strong>` + product.name + `</strong></a>
+                <p>Descripcion: ` + product.description + `</p>
+                <p>Precio: ` + product.cost + ` ` + product.currency + `</p>
+                <p>Vendidos: ` + product.soldCount + `</p></div>
+                <div><img src="`+ product.imgSrc + `" class="pb-2 pl-3 pt-2"></div></div>`
+            }
+            document.getElementById('product-container').innerHTML = htmlAppend;
+        } else {
+            for (let i = 0; i < orderedArray.length; i++) {
+                let product = orderedArray[i];
+                htmlAppend += `<div class="col-sm-4 my-4">
+                <div class="card h-100">
+                <a href="product-info.html?name=`+product.name+`">
+                        <img src="`+product.imgSrc+`"class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">`+ product.name +`</h5>
+                            <p class="card-text">` + product.description + `</p>
+                            <div class="d-flex justify-content-between">
+                                <p>Precio: ` + product.cost + ` ` + product.currency + `</p>
+                                <small>Vendidos: ` + product.soldCount + `</small>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
-            </div>`
+                    </a>
+                </div>
+                </div>`
+            }
+            document.getElementById('product-container').innerHTML = `<div id="fila" class="row">`+htmlAppend+`</div>`;
         }
-        document.getElementById('fila').innerHTML = htmlAppend;
     }
 }
-
 
 function searchItem (search){
     let searchBy = String(search);
@@ -117,5 +124,13 @@ document.addEventListener("DOMContentLoaded", function(e) {
             sortBy('porDefec');
             appendProduct();
         }
+    })
+    document.getElementById('hamburger-menu').addEventListener("click", function(){
+        visualMode = "list";
+        appendProduct();
+    })
+    document.getElementById('square-menu').addEventListener("click", function(){
+        visualMode = "cells";
+        appendProduct();
     })
 });

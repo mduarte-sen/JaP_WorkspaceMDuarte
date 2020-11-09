@@ -45,7 +45,7 @@
   <div class="container p-5 d-flex justify-content-around" id="profile-container">
     <div>
       <h2>Mi Perfil</h2>
-      <form action="" onsubmit="saveUserInfo(event)">
+      <form action="" id="user-info-form" onsubmit="saveUserInfo(event)">
         <label class="pt-3" for="user-cname">Nombre completo: </label><br>
         <input type="text" id="user-cname"><br>
         <label class="pt-3" for="user-age">Edad: </label><br>
@@ -54,16 +54,19 @@
         <input type="email" id="user-email"><br>
         <label class="pt-3" for="user-phone">Telefono de contacto:</label><br>
         <input type="number" id="user-phone"><br>
-        <button type="submit" class="mt-4 btn pink-button" id="save-profile-changes">Guardar cambios</button>
       </form>
     </div>
-    <div>
-      <img class="mt-5" src="img/Portrait_Placeholder.png" alt="" width="200"><br>
-      <label class="mt-3" for="profile-image-upload">Subir Imagen: </label><br>
-      <input  type="file" name="profile-image-upload" id="profile-image-upload">
+    <div class="d-flex align-items-end flex-column">
+      <div class="pb-4">
+        <img class="mt-5" src="img/Portrait_Placeholder.png" alt="" width="200" id="profile-picture"><br>
+        <label class="mt-3" for="profile-image-upload">Subir Imagen: </label><br>
+        <input  type="file" name="profile-image-upload" id="profile-image-upload"><br>
+        <div id="image-confirm"></div>
+      </div>
+      <button type="submit" class="mt-4 btn pink-button mt-auto" id="save-profile-changes" form="user-info-form">Guardar cambios</button>
     </div>
   </div>
-  <footer class="text-muted bg-light">
+  <footer class="text-muted bg-light ">
     <div class="container">
       <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
       <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
@@ -89,5 +92,4 @@
   <script src="js/init.js"></script>
   <script src="js/my-profile.js"></script>
 </body>
-
 </html>
