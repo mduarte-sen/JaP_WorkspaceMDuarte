@@ -3,6 +3,7 @@ let orderedArray = [];
 let setOrder = undefined;
 let setPrice = undefined;
 let visualMode = "cells";
+let priceRanges = [10000, 12500, 15000, 17500, 20000];
 
 let productURL = ""
 
@@ -33,14 +34,14 @@ function sortBy(order){
 function filterPrice(x){
     showSpinner();
     setPrice = x;
-    if(x === 'a'){ //corregir valores magicos
-        orderedArray = defaultArray.filter(function(y){return y.cost >= 10000 && y.cost <= 12500;});
+    if(x === 'a'){
+        orderedArray = defaultArray.filter(function(y){return y.cost >= priceRanges[0] && y.cost <= priceRanges[1];});
     } else if(x === 'b'){
-        orderedArray = defaultArray.filter(function(y){return y.cost >= 12500 && y.cost <= 15000;});
+        orderedArray = defaultArray.filter(function(y){return y.cost >= priceRanges[1] && y.cost <= priceRanges[2];});
     } else if(x === 'c'){
-        orderedArray = defaultArray.filter(function(y){return y.cost >= 15000 && y.cost <= 17500;});
+        orderedArray = defaultArray.filter(function(y){return y.cost >= priceRanges[2] && y.cost <= priceRanges[3];});
     } else if(x === 'd') {
-        orderedArray = defaultArray.filter(function(y){return y.cost >= 17500 && y.cost <= 20000;});
+        orderedArray = defaultArray.filter(function(y){return y.cost >= priceRanges[3] && y.cost <= priceRanges[4];});
     } else {
         orderedArray = [];
         orderedArray = orderedArray.concat(defaultArray);
@@ -66,7 +67,7 @@ function appendProduct(){
                 <p>Descripcion: ` + product.description + `</p>
                 <p>Precio: ` + product.cost + ` ` + product.currency + `</p>
                 <p>Vendidos: ` + product.soldCount + `</p></div>
-                <div><img src="`+ product.imgSrc + `" class="pb-2 pl-3 pt-2"></div></div>`
+                <div><img src="`+ product.imgSrc + `" class="pb-2 pl-3 pt-2" width="500"></div></div>`
             }
             document.getElementById('product-container').innerHTML = htmlAppend;
         } else {
@@ -98,21 +99,16 @@ function searchItem (search){
     sortBy(setOrder);
     filterPrice(setPrice);
     if (searchBy.length >= 1) {
-    for(let i = 0; i < searchBy.length; i++) {
-        index = i;
         names = orderedArray;
-        letter = searchBy.toLowerCase().charAt(i);
-            var filteredNames = names.filter(function(word) {
-               return word.name.toLowerCase().charAt(index) === letter;
-            })
-            orderedArray = filteredNames;
-            appendProduct();
-            }
-    } else {
-        orderedArray = orderedArray.concat(defaultArray);
-        appendProduct();
+        letters = searchBy.toLowerCase();
+        var filteredNames = names.filter(function(word) {
+            return word.name.toLowerCase().includes(letters);
+        })
+        orderedArray = filteredNames;
     }
+    appendProduct();
 }
+
 
 
 document.addEventListener("DOMContentLoaded", function(e) {

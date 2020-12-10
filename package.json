@@ -1,0 +1,23 @@
+{
+  "name": "jap_workspacemduarte",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "lite-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/okamiSen/JaP_Workspace.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/okamiSen/JaP_Workspace/issues"
+  },
+  "homepage": "https://github.com/okamiSen/JaP_Workspace#readme",
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  }
+}

@@ -3,15 +3,11 @@ let image64 = undefined;
 
 function saveUserInfo(e){
     e.preventDefault();
-    let userFullName = document.getElementById('user-cname').value;
-    let userAge = document.getElementById('user-age').value;
-    let userEmail = document.getElementById('user-email').value;
-    let userPhone = document.getElementById('user-phone').value;
     let infoStorage = {
-        fullName: userFullName,
-        age: userAge,
-        email: userEmail,
-        phone: userPhone
+        fullName: document.getElementById('user-cname').value,
+        age: document.getElementById('user-age').value,
+        email: document.getElementById('user-email').value,
+        phone: document.getElementById('user-phone').value
     }
     localStorage.setItem('userInfo', JSON.stringify(infoStorage));
     localStorage['profileImg'] = image64;
@@ -28,8 +24,8 @@ function reload(element){
     container.innerHTML= content; 
 }
 
-input.onchange = function(evt){
-    let tgt = evt.target || window.event.srcElement, 
+input.onchange = function(event){
+    let tgt = event.target || window.event.srcElement, 
         files = tgt.files;
 
     if (FileReader && files && files.length) {

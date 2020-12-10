@@ -85,6 +85,7 @@ function fecha(){
     var dd = hoy.getDate();
     var mm = hoy.getMonth()+1;
     var yyyy = hoy.getFullYear();
+    
     function addZero(i) {
         if (i < 10) {
             i = '0' + i;

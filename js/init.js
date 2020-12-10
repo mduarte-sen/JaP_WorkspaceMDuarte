@@ -44,8 +44,15 @@ var getJSONData = function(url){
 if (
   !window.location.href.endsWith('login.html') &&
   !(sessionStorage.getItem('logueado') === 'true' || localStorage.getItem('logueado') === 'true')) { 
-    window.location.href = 'login.html';//si el usuario no esta logueado redirigir a 'login.html'
+    window.location.href = 'login.html';
 };
+
+function signOut() {
+  var auth2 = gapi.auth2.getAuthInstance();
+  auth2.signOut().then(function () {
+    console.log('User signed out.');
+  });
+}
 
 
 function cerrarSesion(){
@@ -57,6 +64,7 @@ function cerrarSesion(){
     sessionStorage.removeItem('nombre');
     sessionStorage.removeItem('logueado');
   }
+  signOut();
   location.reload();
 }
 

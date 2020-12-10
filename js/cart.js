@@ -138,7 +138,7 @@ function validatePay(e){
             mensajeError += `<p>*Debe rellenar todos los campos del metodo de pago.</p>`
         }
         if(!error){
-            e.submit();
+            document.getElementById('purchaseForm').submit();
         }
 
     }
