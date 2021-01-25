@@ -2,7 +2,7 @@ let defaultArray = [];
 let orderedArray = [];
 let setOrder = undefined;
 let setPrice = undefined;
-let visualMode = "cells";
+let visualMode = "list";
 let priceRanges = [10000, 12500, 15000, 17500, 20000];
 
 let productURL = ""
