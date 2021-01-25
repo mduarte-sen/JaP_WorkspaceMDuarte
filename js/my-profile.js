@@ -38,9 +38,6 @@ input.onchange = function(event){
     document.getElementById('image-confirm').innerHTML = `<p style="color: limegreen;">Presione "Guardar Cambios" para guardar y mostrar la imagen.</p>`
 }
 
-//Función que se ejecuta una vez que se haya lanzado el evento de
-//que el documento se encuentra cargado, es decir, se encuentran todos los
-//elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function (e) {
     if(localStorage.getItem('profileImg')){
         let dataImage = localStorage.getItem('profileImg');

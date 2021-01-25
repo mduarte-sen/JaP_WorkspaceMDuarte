@@ -40,12 +40,10 @@ var getJSONData = function(url){
     });
 }
 
-
-if (
-  !window.location.href.endsWith('login.html') &&
-  !(sessionStorage.getItem('logueado') === 'true' || localStorage.getItem('logueado') === 'true')) { 
-    window.location.href = 'login.html';
-};
+// if (!window.location.href.endsWith('login.html') &&
+//   !(sessionStorage.getItem('logueado') === 'true' || localStorage.getItem('logueado') === 'true')) { 
+//     window.location.href = 'login.html';
+// };
 
 function signOut() {
   var auth2 = gapi.auth2.getAuthInstance();
@@ -87,14 +85,7 @@ if(localStorage.getItem('nombre') || sessionStorage.getItem('nombre')) {
   } else {
     document.getElementById('profile-name').innerHTML += `` + sessionStorage.getItem('nombre') + ` &nbsp<i class="arrow"></i>`;
   }
-} else { //boton de iniciar sesion no utilizado por el momento
+} else {
   document.querySelectorAll('.site-header div')[0].innerHTML += `<a class="btn py-2 pink-button" href="login.html">Iniciar Sesion</a>`;
 };
 
-
-//Función que se ejecuta una vez que se haya lanzado el evento de
-//que el documento se encuentra cargado, es decir, se encuentran todos los
-//elementos HTML presentes.
-document.addEventListener("DOMContentLoaded", function(e){
-
-});
